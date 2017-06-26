@@ -1,0 +1,99 @@
+#content
+{
+	position: relative;
+	top : 40px;
+	border: 2px solid black;
+	width: 700px;
+	height: 500px;
+	border-radius: 10px;
+}
+#left
+{
+	position : absolute;
+	width: 345px;
+	height: 490px;
+	top: 4px;
+	left:4px;
+	
+	position: 5px;
+	background-color: white;
+
+	border: 2px solid black;
+	border-radius: 10px 0px 0px 10px;
+}
+#right
+{
+	position : relative;
+	width: 345px;
+	height: 490px;
+	left: 349px;
+	top: 4px;
+	border: 2px solid black;
+	border-radius: 0px 10px 10px 0px;
+	background-color: white;
+
+}
+
+.space
+{
+	height: 1000px;
+}
+#playerRight
+{
+	border : 1px solid black;
+	width: 15px;
+	height: 70px;
+	position: absolute;
+	left: 327px;
+	top: 200px;
+	border-radius: 8px;
+}
+#playerLeft
+{
+	border : 1px solid black;
+	width: 15px;
+	height: 70px;
+	position: absolute;
+	left: 2px;
+	top: 200px;
+	border-radius: 8px;
+}
+#ball
+{
+	position: absolute;
+	background-color: black;
+	width: 15px;
+	height: 15px;
+	left: 343px;
+	top: 247px;
+	border-radius: 10px;
+}
+#start
+{
+	position: absolute;
+	top : 100px;
+	left: 260px;
+	color: white;
+	background-color: black;
+	font-family: monospace;
+	font-size: 41px;
+	border-radius: 10px;
+
+}
+#scoreLeft
+{
+	position: absolute;
+	left: 325px;
+	top : 0px;
+}
+#scoreRight
+{
+	position: absolute;
+	left: 9px;
+	top: 0px;
+}
+#tesst
+{
+	display: none;
+	top: 70px;
+}
