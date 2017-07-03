@@ -1,9 +1,7 @@
 const canvas = document.getElementById("pong");
 var ctx = canvas.getContext("2d");
-var id = null;
-var y = 10;
 var Player = {
-  y: 255,
+  y: 500,
   x: 0,
   point: 0,
   posPoint: 0,
@@ -19,8 +17,8 @@ var ball = {
   x: 490,
   y: 290,
   sx: 2,
-  sy: -3,
-  dx: 1,
+  sy: 3,
+  dx: -1,
   dy: 1,
   draw: function() {
     ctx.fillStyle = "white";
@@ -33,7 +31,7 @@ player.x = 16;
 player.posPoint = 470;
 opponent.posPoint = 515;
 opponent.x = 964;
-var id = setInterval(draw, 50)
+var id = setInterval(draw, 8)
 function draw() {
   ctx.strokeStyle = "white";
   ctx.lineWidth = 5;
@@ -64,22 +62,21 @@ function draw() {
 
 }
 function animate () {
-  if (ball.y + ball.sy <= 15)
-    ball.dy = -ball.dy;
-  if (ball.y + ball.sy >= canvas.height - 35)
+  if (ball.y + ball.sy <= 15 || ball.y + ball.sy >= (canvas.height - 35))
     ball.dy = -ball.dy;
   if (player.y > canvas.height-105)
     player.y = canvas.height-105;
   if (player.y < 15)
       player.y = 15;
-  if (ball.y < player.y + 90 && ball.y > player.y && ball.x <= 34 && ball.x > 24)
-    ball.dx = -ball.dx;
-  if (ball.y < opponent.y + 90 && ball.y > opponent.y && ball.x >= canvas.width - 34 && ball.x < canvas.width - 24)
-    ball.dx = -ball.dx;
+  if (ball.y < player.y + 90 && ball.y > player.y && ball.x <= 37 && ball.x > 24)
+    rdm(true);
+  if (ball.y < opponent.y + 90 && ball.y > opponent.y && ball.x >= canvas.width - 47 && ball.x < canvas.width - 34)
+      rdm(true);
   if (ball.x < 15) {
-    opponent.point ++
+    opponent.point ++;
     ball.x = 490;
     ball.y = 290;
+    rdm(false)
   }
   if (opponent.y > canvas.height-105)
     opponent.y = canvas.height-105;
@@ -89,6 +86,7 @@ function animate () {
     player.point ++
     ball.x = 490;
     ball.y = 290;
+    rdm(false);
   }
   if (ball.x > 100)
     opponentAi();
@@ -100,24 +98,32 @@ function animate () {
   ball.sy = Math.floor(Math.random()*4);*/
 }
 function game(e) {
-  console.log(e  + "player.y = " + player.y)
   if (e.key == "x" || e.key == "X")
   {
-    opponent.y = opponent.y + 15;
+    player.y = player.y + 15;
   }
   if (e.key == "s" || e.key == "S")
   {
-    opponent.y = opponent.y - 15;
+    player.y = player.y - 15;
   }
   draw();
 
 }
 function opponentAi() {
   if (ball.y < opponent.y + 45)
-    player.y -= 3;
+    opponent.y -= 2;
   if (ball.y > opponent.y + 45)
-    player.y += 3;
+    opponent.y += 2;
 }
 const keyEvent = () => {window.addEventListener("keydown", game)};
 keyEvent();
 draw();
+function rdm(rel) {
+  if (rel)
+    ball.dx = -ball.dx;
+  ball.sx = Math.floor(Math.random() * 2) + 1;
+  ball.sy = Math.floor(Math.random() * 5);
+  if (Math.floor(Math.random() * 2) == 1)
+    ball.dy = - ball.dy;
+
+}

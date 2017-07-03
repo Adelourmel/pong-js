@@ -2,4 +2,5 @@
 #pong
 {
 	background: black;
+	z-index: 1;
 }
